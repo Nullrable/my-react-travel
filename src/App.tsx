@@ -45,9 +45,7 @@ function App() {
                                 className={styles["search-input"]}
                             />
                         </Layout.Header>
-
                     </div>
-
                     <Menu mode={"horizontal"} className={styles["main-menu"]}>
                         <Menu.Item key={1}>旅游首页</Menu.Item>
                         <Menu.Item key={2}>周末游</Menu.Item>
