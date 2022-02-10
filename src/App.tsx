@@ -15,9 +15,9 @@ function App() {
 
                         <div className={styles["top-header"]}>
                             <div className={styles.inner}>
-                                <Typography.Text style={{float: "left"}}>让旅游更幸福</Typography.Text>
+                                <Typography.Text>让旅游更幸福</Typography.Text>
                                 <Dropdown.Button
-                                    style={{marginLeft: 15, float: "left", marginTop: "5px"}}
+                                    style={{marginLeft: 15}}
                                     overlay={
                                         <Menu>
                                             <Menu.Item>中文</Menu.Item>
