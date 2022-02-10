@@ -26,6 +26,7 @@
   margin-top: 5px;
 }
 
+
 .main-header {
   background-color: white !important;
   height: 60px;
@@ -60,6 +61,7 @@
   line-height: 64px !important;
   display: inline;
   color: #03A9F4 !important;
+  float: left;
 }
 
 .search-input {
