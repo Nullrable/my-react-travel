@@ -3,9 +3,10 @@ import styles from "./Header.module.css";
 import {Button, Dropdown, Input, Layout, Menu, Typography} from "antd";
 import {GlobalOutlined} from "@ant-design/icons";
 import logo from "../../assets/logo.svg";
+import {useNavigate} from "react-router-dom";
 
 export function Header() {
-
+    let navigate = useNavigate();
     return (
         <div>
             <div className={styles["app-header"]}>
@@ -27,7 +28,9 @@ export function Header() {
                         </Dropdown.Button>
 
                         <Button.Group style={{float: "right", marginTop: "5px"}}>
-                            <Button>注册</Button>
+                            <Button onClick={()=>{
+                                navigate(`signIn`)
+                            }}>注册</Button>
                             <Button>登录</Button>
                         </Button.Group>
                     </div>

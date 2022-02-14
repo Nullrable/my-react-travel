@@ -1,57 +1,20 @@
 import React from 'react';
-import styles from './App.module.css';
-import 'antd/dist/antd.css';
-import {Footer, Header, SideMenu, Carousel, ProductCollection} from "./components";
-import {Row, Col, Typography} from "antd";
-import sideImage from './assets/images/sider_2019_12-09.png';
-import sideImage2 from './assets/images/sider_2019_02-04.png';
-import sideImage3 from './assets/images/sider_2019_02-04-2.png';
-import { productList1, productList2, productList3 } from "./mockups";
+import styles from "./App.module.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {HomePage, SignIn} from "./pages";
+import {ProductDetail} from "./pages";
 
 function App() {
     return (
         <div className={styles.App}>
-            <div>
-                <Header/>
-                <div className={styles['page-content']}>
-                    <Row>
-                        <Col span={6}>
-                            <SideMenu/>
-                        </Col>
-                        <Col span={18}>
-                            <Carousel />
-                        </Col>
-                    </Row>
-                    <ProductCollection
-                        title={
-                            <Typography.Title level={3} type="warning">
-                                爆款推荐
-                            </Typography.Title>
-                        }
-                        sideImage={sideImage}
-                        products={productList1}
-                    />
-                    <ProductCollection
-                        title={
-                            <Typography.Title level={3} type="danger">
-                                新品上市
-                            </Typography.Title>
-                        }
-                        sideImage={sideImage2}
-                        products={productList2}
-                    />
-                    <ProductCollection
-                        title={
-                            <Typography.Title level={3} type="success">
-                                国内游推荐
-                            </Typography.Title>
-                        }
-                        sideImage={sideImage3}
-                        products={productList3}
-                    />
-                </div>
-                <Footer/>
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HomePage/>} />
+                    <Route path="/signIn" element={<SignIn/>} />
+                    <Route path = "productDetail/:productId" element={<ProductDetail/>}/>
+                    <Route path="*" element={<h1>404</h1>} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
