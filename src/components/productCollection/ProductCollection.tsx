@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductCollection.module.css";
-import {Row, Col, Divider} from "antd";
+import {Row, Col, Divider, Spin} from "antd";
 import {ProductImage} from "./ProductImage";
 
 interface PropsType {
@@ -13,7 +13,8 @@ export function ProductCollection(props: PropsType) {
     const title = props.title;
     const sideImage = props.sideImage;
     const products = props.products;
-    return (
+
+    return (products == null || products.length == 0) ? (<p>数据为空</p>) :  (
         <div className={styles.content}>
             <Divider orientation="left">{title}</Divider>
             <Row>

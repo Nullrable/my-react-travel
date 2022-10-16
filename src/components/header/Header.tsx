@@ -20,7 +20,6 @@ export function Header() {
     const {t} = useTranslation();
 
     const menuClickHandler = (e: any) => {
-        console.log(e);
         if (e.key === "new") {
             // 处理新语言添加action
             dispatch(addLanguageActionCreator("新语言", "new_lang"));
@@ -72,23 +71,23 @@ export function Header() {
                     />
                 </Layout.Header>
             </div>
-            <Menu mode={"horizontal"} className={styles["main-menu"]}>
-                <Menu.Item key="1"> {t("header.home_page")} </Menu.Item>
-                <Menu.Item key="2"> {t("header.weekend")} </Menu.Item>
-                <Menu.Item key="3"> {t("header.group")} </Menu.Item>
-                <Menu.Item key="4"> {t("header.backpack")} </Menu.Item>
-                <Menu.Item key="5"> {t("header.private")} </Menu.Item>
-                <Menu.Item key="6"> {t("header.cruise")} </Menu.Item>
-                <Menu.Item key="7"> {t("header.hotel")} </Menu.Item>
-                <Menu.Item key="8"> {t("header.local")} </Menu.Item>
-                <Menu.Item key="9"> {t("header.theme")} </Menu.Item>
-                <Menu.Item key="10"> {t("header.custom")} </Menu.Item>
-                <Menu.Item key="11"> {t("header.study")} </Menu.Item>
-                <Menu.Item key="12"> {t("header.visa")} </Menu.Item>
-                <Menu.Item key="13"> {t("header.enterprise")} </Menu.Item>
-                <Menu.Item key="14"> {t("header.high_end")} </Menu.Item>
-                <Menu.Item key="15"> {t("header.outdoor")} </Menu.Item>
-                <Menu.Item key="16"> {t("header.insurance")} </Menu.Item>
+            <Menu key="m1" mode={"horizontal"} className={styles["main-menu"]}>
+                <Menu.Item key="x1"> {t("header.home_page")} </Menu.Item>
+                <Menu.Item key="x2"> {t("header.weekend")} </Menu.Item>
+                <Menu.Item key="x3"> {t("header.group")} </Menu.Item>
+                <Menu.Item key="x4"> {t("header.backpack")} </Menu.Item>
+                <Menu.Item key="x5"> {t("header.private")} </Menu.Item>
+                <Menu.Item key="x6"> {t("header.cruise")} </Menu.Item>
+                <Menu.Item key="x7"> {t("header.hotel")} </Menu.Item>
+                <Menu.Item key="x8"> {t("header.local")} </Menu.Item>
+                <Menu.Item key="x9"> {t("header.theme")} </Menu.Item>
+                <Menu.Item key="x10"> {t("header.custom")} </Menu.Item>
+                <Menu.Item key="x11"> {t("header.study")} </Menu.Item>
+                <Menu.Item key="x12"> {t("header.visa")} </Menu.Item>
+                <Menu.Item key="x13"> {t("header.enterprise")} </Menu.Item>
+                <Menu.Item key="x14"> {t("header.high_end")} </Menu.Item>
+                <Menu.Item key="x15"> {t("header.outdoor")} </Menu.Item>
+                <Menu.Item key="x16"> {t("header.insurance")} </Menu.Item>
             </Menu>
         </div>
     );

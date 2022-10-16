@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
     Header,
     Footer,
@@ -7,14 +7,31 @@ import {
     ProductCollection,
     BusinessPartner,
 } from "../../components";
-import {Row, Col, Typography} from "antd";
-import {productList1, productList2, productList3} from "./mockups";
+import {Row, Col, Typography, Spin} from "antd";
 import sideImage from "../../assets/images/sider_2019_12-09.png";
-import sideImage2 from "../../assets/images/sider_2019_02-04.png";
-import sideImage3 from "../../assets/images/sider_2019_02-04-2.png";
 import styles from "./HomePage.module.css";
+import axios from "axios";
 
-export function HomePage() {
+export const HomePage = () => {
+    const [productCollectionList, setProductCollectionList] = useState<any[]>([])
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get<any[]>("http://123.56.149.216:8089/api/productCollections").then((res) => {
+            setProductCollectionList(res.data)
+        }).catch(e => {
+            setError(e)
+        }).finally(() => setLoading(false))
+    }, [])
+
+    if (loading) {
+        return <Spin />
+    }
+    if (error) {
+        return <p>errors：{ error }</p>
+    }
     return (
         <>
             <Header/>
@@ -28,33 +45,23 @@ export function HomePage() {
                         <Carousel/>
                     </Col>
                 </Row>
-                <ProductCollection
-                    title={
-                        <Typography.Title level={3} type="warning">
-                            爆款推荐
-                        </Typography.Title>
-                    }
-                    sideImage={sideImage}
-                    products={productList1}
-                />
-                <ProductCollection
-                    title={
-                        <Typography.Title level={3} type="danger">
-                            新品上市
-                        </Typography.Title>
-                    }
-                    sideImage={sideImage2}
-                    products={productList2}
-                />
-                <ProductCollection
-                    title={
-                        <Typography.Title level={3} type="success">
-                            国内游推荐
-                        </Typography.Title>
-                    }
-                    sideImage={sideImage3}
-                    products={productList3}
-                />
+
+                {
+                    productCollectionList.map(item => {
+                       return  <ProductCollection
+                            title={
+                                <Typography.Title level={3} type="warning">
+                                   {
+                                     item.title
+                                   }
+                                </Typography.Title>
+                            }
+                            sideImage={sideImage}
+                            products={item.touristRoutes}
+                        />
+                    }) 
+                }
+              
                 <BusinessPartner/>
             </div>
             <Footer/>
