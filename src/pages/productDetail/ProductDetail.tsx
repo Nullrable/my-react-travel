@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Spin, Row, Col, Divider, Typography, Anchor, Menu } from "antd";
 import styles from "./ProductDetail.module.css";
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { DatePicker, Space } from "antd";
 import { commentMockData } from "./mockup";
-import {productDetailSlice} from '../../redux/productDetail/slice'
-import { useSelector } from "../../redux/hooks";
-import {useDispatch} from "react-redux";
+import {getProductDetailById} from '../../redux/productDetail/slice'
+import {useAppDispatch, useSelector} from "../../redux/hooks";
 
 const { RangePicker } = DatePicker;
 
@@ -22,26 +20,12 @@ export const ProductDetail = () => {
     const error = useSelector((state) => state.productDetail.error);
     const product = useSelector((state) => state.productDetail.data);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            dispatch(productDetailSlice.actions.fetchStart());
-            try {
-                const { data } = await axios.get(
-                    `http://123.56.149.216:8089/api/TouristRoutes/${productId}`
-                );
-                dispatch(productDetailSlice.actions.fetchSuccess(data));
-            } catch (error) {
-                console.log(error)
-                dispatch(
-                    productDetailSlice.actions.fetchFail(
-                        error instanceof Error ? error.message : "error"
-                    )
-                );
-            }
-        };
-        fetchData();
+        if (productId != null) {
+            dispatch(getProductDetailById(productId))
+        }
     }, []);
 
     if (loading) {
