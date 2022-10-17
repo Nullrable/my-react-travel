@@ -6,3 +6,6 @@ export * from "./productCollection"
 export * from "./businessPartner"
 export * from "./productComments"
 export * from "./productIntro"
+export * from "./filter"
+export * from "./productList"
+

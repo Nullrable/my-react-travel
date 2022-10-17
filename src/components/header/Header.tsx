@@ -28,6 +28,10 @@ export function Header() {
         }
     }
 
+    const doSearch = (value: string)=>{
+        navigate("/search/"+value)
+    }
+
     return (
         <div>
             <div className={styles["app-header"]}>
@@ -68,6 +72,7 @@ export function Header() {
                     <Input.Search
                         placeholder={"请输入旅游目的地、主题、或关键字"}
                         className={styles["search-input"]}
+                        onSearch={doSearch}
                     />
                 </Layout.Header>
             </div>

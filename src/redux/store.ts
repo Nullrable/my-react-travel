@@ -1,13 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
 import languageReducer from "./language/languageReducer";
 import thunk from "redux-thunk";
-import {getProductDetailById, productDetailSlice} from "./productDetail/slice";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {productDetailSlice} from "./productDetail/slice";
+import {combineReducers, configureStore } from "@reduxjs/toolkit";
 import {changeLangMiddleware} from "./middlewares/changeLangMiddleware"
+import {productSearchSlice} from "./productSearch/slice";
 
 const rootReducer = combineReducers({
     language: languageReducer,
-    productDetail: productDetailSlice.reducer
+    productDetail: productDetailSlice.reducer,
+    productSearch: productSearchSlice.reducer
 })
 
 // const store = createStore(rootReducer, applyMiddleware(thunk, changeLangMiddleware));
