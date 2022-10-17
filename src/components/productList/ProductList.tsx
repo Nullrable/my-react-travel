@@ -44,17 +44,17 @@ const listData = (productList: Product[]) =>
     rating: p.rating,
   }));
 
-class IconText extends React.Component<{ icon: any, text: any }> {
-    render() {
-        let {icon, text} = this.props;
-        return (
-            <Space>
-                {React.createElement(icon)}
-                {text}
-            </Space>
-        );
-    }
-}
+type IconTextProps = {
+    icon: any;
+    text: string
+};
+
+const IconText: React.FC<IconTextProps> = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
 export const ProductList: React.FC<PropsType> = ({
   data,

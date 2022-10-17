@@ -58,7 +58,7 @@ export function Header() {
 
                         <Button.Group style={{float: "right", marginTop: "5px"}}>
                             <Button onClick={() => {
-                                navigate(`signIn`)
+                                navigate("/signIn")
                             }}>注册</Button>
                             <Button>登录</Button>
                         </Button.Group>
