@@ -29,7 +29,7 @@ export function Header() {
     }
 
     const doSearch = (value: string)=>{
-        navigate("/search/"+value)
+        navigate("/productSearch/"+value)
     }
 
     return (

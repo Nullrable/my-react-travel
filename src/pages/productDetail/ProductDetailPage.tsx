@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Spin, Row, Col, Divider, Typography, Anchor, Menu } from "antd";
-import styles from "./ProductDetail.module.css";
+import styles from "./ProductDetailPage.module.css";
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { DatePicker, Space } from "antd";
 import { commentMockData } from "./mockup";
@@ -14,7 +14,7 @@ type MatchParams = {
     productId: string;
 };
 
-export const ProductDetail = () => {
+export const ProductDetailPage = () => {
     const { productId } = useParams<MatchParams>();
     const loading = useSelector((state) => state.productDetail.loading);
     const error = useSelector((state) => state.productDetail.error);

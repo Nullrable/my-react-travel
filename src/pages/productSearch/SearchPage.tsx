@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "./Search.module.css";
+import styles from "./SearchPage.module.css";
 import { Header, Footer, FilterArea, ProductList } from "../../components";
 import {useLocation, useParams} from "react-router-dom";
 import {searchProduct} from '../../redux/productSearch/slice'
@@ -10,7 +10,7 @@ type MatchParameter = {
     keyword: string
 }
 
-export const Search = () => {
+export const SearchPage = () => {
 
     const {keyword} = useParams<MatchParameter>()
     const loading = useSelector(state => state.productSearch.loading)
