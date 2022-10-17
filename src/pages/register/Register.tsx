@@ -1,34 +1,30 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {UserLayout} from "../../layout/userLayout";
-import {Button, Checkbox, Form, Input} from "antd";
-import styles from "../register/Register.module.css";
-import {useAppDispatch, useSelector} from "../../redux/hooks";
-import {signIn} from "../../redux/signIn/slice";
+import {Button, Checkbox, Form, Input} from 'antd';
+import styles from "./Register.module.css"
+import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-export function SignIn() {
+export function Register() {
 
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    const loading = useSelector(s => s.user.loading)
+    const navigate = useNavigate()
 
-    const jwt = useSelector(s => s.user.token);
-
-    useEffect(()=>{
-        if(jwt !== null) {
-            navigate("/");
+    const onFinish = async (values: any) => {
+        console.log("Success:", values);
+        try {
+            await axios.post("http://123.56.149.216:8089/auth/register", {
+                email: values.username,
+                password: values.password,
+                confirmPassword: values.confirm,
+            });
+            navigate("/signIn/");
+        } catch (error) {
+            alert("注册失败！");
         }
-    }, [jwt])
-
-    const onFinish = (values: any) => {
-        dispatch(signIn({
-            email: values.username,
-            password: values.password
-        }))
     };
 
     const onFinishFailed = (errorInfo: any) => {
-        console.log("Failed:", errorInfo);
+        console.log('Failed:', errorInfo);
     };
 
     return <>
@@ -59,17 +55,33 @@ export function SignIn() {
                     <Input.Password/>
                 </Form.Item>
 
+                <Form.Item
+                    label="Confirm Password"
+                    name="confirm"
+                    rules={[{required: true, message: 'Please input your confirm password!'},
+                        ({getFieldValue}) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue("password") === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject("密码确认不一致！");
+                            },
+                        }),
+                    ]}
+                >
+                    <Input.Password/>
+                </Form.Item>
+
                 <Form.Item name="remember" valuePropName="checked" wrapperCol={{offset: 8, span: 16}}>
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                    <Button type="primary" htmlType="submit" loading={loading}>
+                    <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>
             </Form>
-
         </UserLayout>
     </>
 

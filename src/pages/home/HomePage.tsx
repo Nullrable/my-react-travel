@@ -9,8 +9,9 @@ import {
 } from "../../components";
 import {Row, Col, Typography, Spin} from "antd";
 import sideImage from "../../assets/images/sider_2019_12-09.png";
-import styles from "./HomePage.module.css";
 import axios from "axios";
+import {MainLayout} from "../../layout/mainLayout/MainLayout";
+import {useSelector} from "../../redux/hooks";
 
 export const HomePage = () => {
     const [productCollectionList, setProductCollectionList] = useState<any[]>([])
@@ -27,16 +28,14 @@ export const HomePage = () => {
     }, [])
 
     if (loading) {
-        return <Spin />
+        return <Spin/>
     }
     if (error) {
-        return <p>errors：{ error }</p>
+        return <p>errors：{error}</p>
     }
     return (
         <>
-            <Header/>
-            {/* 页面内容 content */}
-            <div className={styles["page-content"]}>
+           <MainLayout>
                 <Row style={{marginTop: 20}}>
                     <Col span={6}>
                         <SideMenu/>
@@ -48,23 +47,22 @@ export const HomePage = () => {
 
                 {
                     productCollectionList.map(item => {
-                       return  <ProductCollection
+                        return <ProductCollection
                             title={
                                 <Typography.Title level={3} type="warning">
-                                   {
-                                     item.title
-                                   }
+                                    {
+                                        item.title
+                                    }
                                 </Typography.Title>
                             }
                             sideImage={sideImage}
                             products={item.touristRoutes}
                         />
-                    }) 
+                    })
                 }
-              
+
                 <BusinessPartner/>
-            </div>
-            <Footer/>
+           </MainLayout>
         </>
     );
 }
